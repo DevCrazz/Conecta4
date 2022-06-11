@@ -1,18 +1,30 @@
 package com.cys.conecta4;
 
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 public class Box {
     private ImageButton imageButton;
     private boolean status;
+    private int numChip;
     private String colorChip;
     private int sector;
 
-    public Box(ImageButton imageButton, boolean status, String colorChip, int sector) {
+    public Box(ImageButton imageButton, int sector, int numChip) {
         this.imageButton = imageButton;
         this.status = false;
+        this.numChip = numChip;
         this.colorChip = "W";
-        this.sector = 0;
+        this.sector = sector;
+    }
+
+    public int getNumChip() {
+        return numChip;
+    }
+
+    public void setNumChip(int numChip) {
+        this.numChip = numChip;
     }
 
     public ImageButton getImageButton() {
@@ -47,6 +59,17 @@ public class Box {
         this.sector = sector;
     }
 
+    public void activate(ImageButton imageButton){
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                System.out.println("Sector: "+ getSector());
+            }
+        });
+    }
+
+
+
     @Override
     public String toString() {
         return "Box{" +
@@ -56,4 +79,5 @@ public class Box {
                 ", sector=" + this.getSector() +
                 '}';
     }
+
 }
